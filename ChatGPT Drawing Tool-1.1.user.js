@@ -149,7 +149,19 @@
     };
 
     copyButton.onclick = async () => {
-        canvas.toBlob(async (blob) => {
+        const offScreenCanvas = document.createElement('canvas');
+        const offScreenCtx = offScreenCanvas.getContext('2d');
+        offScreenCanvas.width = canvas.width;
+        offScreenCanvas.height = canvas.height;
+
+        // Fill the offscreen canvas with a white background
+        offScreenCtx.fillStyle = 'white';
+        offScreenCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
+
+        // Draw the original canvas on top of the white background
+        offScreenCtx.drawImage(canvas, 0, 0);
+
+        offScreenCanvas.toBlob(async (blob) => {
             const item = new ClipboardItem({ 'image/png': blob });
             try {
                 await navigator.clipboard.write([item]);
