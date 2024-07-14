@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ChatGPT Drawing Tool
+// @name         ChatGPT_Drawing_Tool
 // @namespace    http://tampermonkey.net/
 // @version      1.3
 // @description  Adds a standalone drawing tool button to ChatGPT for drawing and copying images to clipboard
